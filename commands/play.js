@@ -1,13 +1,20 @@
-const distube = require('distube');
+const distube = require("distube");
 
-module.exports.run = async (client,message,args) => {
-    // distube.play(message,args.join(" "));
-    const music = args.join(" ");
+module.exports.run = async (client, message, args) => {
+  if (!message.member.voice.channel) {
+    return message.channel.send(
+      "You must have to be connected to a voice channel first!"
+    );
+  }
 
-    client.distube.play(message,music);
-}
+  // distube.play(message,args.join(" "));
+  // join all arguments when have space
+  const music = args.join(" ");
+
+  client.distube.play(message, music);
+};
 
 module.exports.config = {
-    name: "play",
-    aliases: ['p']
-}
+  name: "play",
+  aliases: ["p"],
+};
