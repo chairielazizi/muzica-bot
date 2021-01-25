@@ -1,0 +1,17 @@
+{
+  "name": "muzicabot",
+  "version": "1.0.0",
+  "description": "music that play bot ehh?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chairiel Azizi",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.3",
+    "discord.js": "^12.5.1",
+    "distube": "^2.8.8",
+    "ffmpeg-static": "^4.2.7"
+  }
+}
