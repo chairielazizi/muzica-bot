@@ -24,7 +24,11 @@ client.distube
     message.channel.send(
       `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
     )
-  );
+  )
+  .on("error", (message, e) => {
+    console.error(e);
+    message.channel.send("An error encountered: " + e + " Please try again");
+  });
 
 // for reading the events happen
 require("./files/event")(client);
