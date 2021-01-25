@@ -8,9 +8,20 @@ const { loadCommands } = require("./files/command");
 const DisTube = require("distube");
 
 client.distube = new DisTube(client, {
-  searchSongs: false,
+  // searchSongs: false,
+  searchSongs: true,
   emitNewSongOnly: true,
 });
+
+// const status = (queue) =>
+//   `Volume: \`${queue.volume}%\` | Loop: \`${
+//     queue.repeatMode
+//       ? queue.repeatMode == 2
+//         ? "Server Queue"
+//         : "This Song"
+//       : "Off"
+//   }\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+
 client.distube
   .on(
     "playSong",
@@ -24,6 +35,23 @@ client.distube
     message.channel.send(
       `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
     )
+  )
+  // DisTubeOptions.searchSongs = true
+  .on("searchResult", (message, result) => {
+    let i = 0;
+    message.channel.send(
+      `**Choose an option from below**\n${result
+        .map(
+          (song) => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``
+        )
+        .join("\n")}\n*Enter anything else or wait 60 seconds to cancel*`
+    );
+  })
+  // DisTubeOptions.searchSongs = true
+  .on("searchCancel", (message) => message.channel.send(`Searching canceled`))
+
+  .on("empty", (message) =>
+    message.channel.send("Channel is empty. Leaving the channel")
   )
   .on("error", (message, e) => {
     console.error(e);
