@@ -2,8 +2,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  let helpArray = message.content.split(" ");
-  let helpArgs = helpArray.slice(1);
+  //   let helpArray = message.content.split(" ");
+  //   let helpArgs = helpArray.slice(1);
 
   //   if (helpArgs[0]) {
   var embed = new Discord.MessageEmbed()
