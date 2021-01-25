@@ -10,15 +10,15 @@ module.exports.run = async (bot, message, args) => {
   var queue = await bot.distube.getQueue(message);
 
   if (queue) {
-    bot.distube.stop(message);
+    bot.distube.skip(message);
 
-    message.channel.send("Music is stopped!");
+    message.channel.send("Music is skipped!");
   } else if (!queue) {
     return;
   }
 };
 
 module.exports.config = {
-  name: "stop",
-  aliases: ["st"],
+  name: "skip",
+  aliases: ["sk"],
 };

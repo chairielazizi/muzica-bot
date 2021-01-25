@@ -11,15 +11,20 @@ client.distube = new DisTube(client, {
   searchSongs: false,
   emitNewSongOnly: true,
 });
-client.distube.on(
-  "playSong",
-  (message, song) =>
+client.distube
+  .on(
+    "playSong",
+    (message, song) =>
+      message.channel.send(
+        `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}`
+      )
+    // console.log(song.name.toString())
+  )
+  .on("addSong", (message, queue, song) =>
     message.channel.send(
-      `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}`
+      `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
     )
-
-  // console.log(song.name.toString())
-);
+  );
 
 // for reading the events happen
 require("./files/event")(client);
